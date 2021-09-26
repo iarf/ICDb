@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "faberhp120",
+        "private_label": "Faber",
+        "oem": "Faber",
+        "colloquial_name": "HP120",
+        "material": "Steel",
+        "finish": "Painted",
+        "capacity": 3626.1,
+        "volume": 15.3,
+        "rated_pressure": 237,
+        "manufacture_years": "unknown",
+        "height": 53,
+        "diameter": 18.4,
+        "weight_empty": 12.8366536,
+        "weight_full": 0,
+        "buoyancy_empty": -0.78925008,
+        "buoyancy_full": -3.6514156,
+        "valve_type": "XS Scuba Pro Valve",
+        "ree": 68,
+        "_source": "https://www.xsscuba.com/steel-cylinders"
+    }
+]

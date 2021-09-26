@@ -1,17 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+<div id="app">
+  <table-row v-for="tank in tankInfo" :key="tank._id" :tankProperties="tank"></table-row>
+</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-
+import TableRow from "./components/TableRow.vue";
+import tankInfo from "./assets/tank_info.json"
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    TableRow,
   },
+  data:  () => {
+    return { tankInfo }
+  }
 });
 </script>
 
