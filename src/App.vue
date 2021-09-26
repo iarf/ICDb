@@ -1,20 +1,20 @@
 <template>
 <div id="app">
-  <table-row v-for="tank in tankInfo" :key="tank._id" :tankProperties="tank"></table-row>
+  <tank-table :tankList="tankList"></tank-table>
 </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TableRow from "./components/TableRow.vue";
-import tankInfo from "./assets/tank_info.json"
+import TankTable from "./components/TankTable.vue"
+import tankList from "./assets/tank_info.json"
 export default defineComponent({
   name: "App",
   components: {
-    TableRow,
+    TankTable,
   },
   data:  () => {
-    return { tankInfo }
+    return { tankList }
   }
 });
 </script>
