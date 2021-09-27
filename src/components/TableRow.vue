@@ -52,13 +52,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, PropType } from "@vue/runtime-core";
 import { TankProperties } from "../types";
 export default defineComponent({
   name: "TableRow",
   props: {
     tankProperties: {
-      type: Object as () => TankProperties,
+      type: Object as PropType<TankProperties>,
     },
   },
 });
