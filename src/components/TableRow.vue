@@ -1,60 +1,54 @@
 <template>
-  <div class="table-row">
-    <div class="table-cell private-label-cell">
+  <tr class="table-row">
+    <td class="table-cell private-label-cell">
       {{ tankProperties.private_label }}
-    </div>
-    <div class="table-cell oem-cell">
+    </td>
+    <td class="table-cell oem-cell">
       {{ tankProperties.oem }}
-    </div>
-    <div class="table-cell colloquial_name-cell">
+    </td>
+    <td class="table-cell colloquial_name-cell">
       {{ tankProperties.colloquial_name }}
-    </div>
-    <div class="table-cell material-cell">
+    </td>
+    <td class="table-cell material-cell">
       {{ tankProperties.material }}
-    </div>
-    <div class="table-cell finish-cell">
+    </td>
+    <td class="table-cell finish-cell">
       {{ tankProperties.finish }}
-    </div>
-    <div class="table-cell capacity-cell">
+    </td>
+    <td class="table-cell capacity-cell">
       {{ tankProperties.capacity }}
-    </div>
-    <div class="table-cell volume-cell">
+    </td>
+    <td class="table-cell volume-cell">
       {{ tankProperties.volume }}
-    </div>
-    <div class="table-cell rated_pressure-cell">
+    </td>
+    <td class="table-cell rated_pressure-cell">
       {{ tankProperties.rated_pressure }}
-    </div>
-    <div class="table-cell manufacture_years-cell">
+    </td>
+    <td class="table-cell manufacture_years-cell">
       {{ tankProperties.manufacture_years }}
-    </div>
-    <div class="table-cell height-cell">
+    </td>
+    <td class="table-cell height-cell">
       {{ tankProperties.height }}
-    </div>
-    <div class="table-cell diameter-cell">
+    </td>
+    <td class="table-cell diameter-cell">
       {{ tankProperties.diameter }}
-    </div>
-    <div class="table-cell weight_empty-cell">
+    </td>
+    <td class="table-cell weight_empty-cell">
       {{ tankProperties.weight_empty }}
-    </div>
-    <div class="table-cell weight_full-cell">
+    </td>
+    <td class="table-cell weight_full-cell">
       {{ tankProperties.weight_full }}
-    </div>
-    <div class="table-cell buoyancy_empty-cell">
+    </td>
+    <td class="table-cell buoyancy_empty-cell">
       {{ tankProperties.buoyancy_empty }}
-    </div>
-    <div class="table-cell buoyancy_full-cell">
+    </td>
+    <td class="table-cell buoyancy_full-cell">
       {{ tankProperties.buoyancy_full }}
-    </div>
-    <div class="table-cell valve_type-cell">
-      {{ tankProperties.valve_type }}
-    </div>
-    <div class="table-cell ree-cell">
+    </td>
+    <td class="table-cell ree-cell">
       {{ tankProperties.ree }}
-    </div>
-    <div class="table-cell source-cell">
-      {{ tankProperties._source }}
-    </div>
-  </div>
+    </td>
+  </tr>
 </template>
 
 <script lang="ts">
@@ -69,3 +63,22 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+.table-row {
+    transition: color .2s ease;
+    &:hover {
+        background-color: #f7f5f3;
+    }
+    &:nth-child(even) {
+        background-color: #fafaff;
+        &:hover {
+            background-color: #fcfcfa;
+        }
+    }
+    td {
+        border: none;
+        padding: 4px .6em
+    }
+}
+</style>
