@@ -28,15 +28,17 @@
         <input type="radio" id="l" name="volume_unit" value="l" v-model="volumeUnit" checked>
         <label for="l">l</label>
         <input type="radio" id="cuft" name="volume_unit" value="cuft" v-model="volumeUnit">
-        <label for="cuft">ft<super>3</super></label>
+        <label for="cuft">ft^3</label>
       </div>
     </form>
   </div>
   <table class="table">
     <thead>
       <tr class="header-row">
-        <th v-for="(value, key) in tableHeaderLabels" :key="key" @click="sortField = key">{{ value }}</th>
-        
+        <th v-for="(value, key) in tableHeaderLabels" :key="key" @click="sortBy(key)">
+          {{ value }}
+          <img :class="`sort-arrow ${key === sortField ? 'active '+sortOrder : 'desc'}`" src="@/assets/icons/sort-down-solid.svg" alt="Sort arrow">
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -67,7 +69,8 @@ export default defineComponent({
       weightUnit: "kg",
       pressureUnit: "bar",
       volumeUnit: "l",
-      sortField: "",
+      sortField: "private_label",
+      sortOrder: "asc",
       tableHeaderLabels: {
         private_label: "Private label",
         oem: "OEM",
@@ -129,9 +132,24 @@ export default defineComponent({
       ]
       if (sortableFields.includes(this.sortField)) {
         const sortBy = this.sortField as keyof TankProperties;
-        tanksParsed.sort((a, b) => a[sortBy] > b[sortBy] ? 1 : -1);
+        tanksParsed.sort((a, b) => {
+          if (this.sortOrder === "desc") {
+            return a[sortBy] < b[sortBy] ? 1 : -1
+          }
+          return a[sortBy] > b[sortBy] ? 1 : -1;
+        });
       }
       return tanksParsed;
+    }
+  },
+  methods: {
+    sortBy(field: string): void {
+      if (this.sortField === field) {
+        this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc"; 
+      } else {
+        this.sortField = field;
+        this.sortOrder = "asc";
+      }
     }
   }
 });
@@ -148,9 +166,10 @@ export default defineComponent({
   border-collapse: collapse;
   width: 100%;
   th {
-    padding: 4px .6em;
+    padding: 4px 1.6em 4px .6em;
     cursor: pointer;
     background-color: #ececec;
+    position: relative;
     &:hover {
       background-color: #e2e2e2
     }
@@ -175,6 +194,20 @@ export default defineComponent({
     input {
       margin: 0 0 0 8px;
     }
+  }
+}
+.sort-arrow {
+  opacity: .5;
+  width: 1em;
+  transform: translateY(-.5em);
+  position: absolute;
+  right: .4em;
+  top: calc(50% - .5em);
+  &.active {
+    opacity: 1;
+  }
+  &.asc {
+    transform: rotate(180deg);
   }
 }
 </style>
