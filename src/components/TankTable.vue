@@ -131,12 +131,22 @@ export default defineComponent({
         "ree"
       ]
       if (sortableFields.includes(this.sortField)) {
-        const sortBy = this.sortField as keyof TankProperties;
+        const sortBy = this.sortField as keyof TankProperties ?? 'private_label';
         tanksParsed.sort((a, b) => {
-          if (this.sortOrder === "desc") {
-            return a[sortBy] < b[sortBy] ? 1 : -1
+          const aVal = a[sortBy];
+          const bVal = b[sortBy];
+          if (aVal && bVal) {
+            if (this.sortOrder === "desc") {
+              return (aVal < bVal ? 1 : -1)
+            }
+            return aVal > bVal ? 1 : -1;
+          } else {
+            if (aVal) return this.sortOrder === 'desc' ? 1 : -1;
+            
+            if (bVal) return this.sortOrder === 'desc' ? 1 : -1;
+
+            return 1
           }
-          return a[sortBy] > b[sortBy] ? 1 : -1;
         });
       }
       return tanksParsed;
